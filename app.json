@@ -1,0 +1,23 @@
+{
+  "name": "Peterjoramqrcode Session",
+  "description": "WhatsApp bot session generator by Peter Joram to simplify WhatsApp bot onboarding.",
+  "logo": "https://telegra.ph/file/12b0fb245e6b8ba4bf718.jpg",
+  "repository": "https://github.com/peterjoram37/Peterjoramqrcode",
+  "keywords": ["WhatsApp", "Session", "Peterjoramqrcode", "Bot"],
+  "success_url": "/",
+  "buildpacks": [
+    { "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" }
+  ],
+  "env": {
+    "PORT": {
+      "description": "Port for web app. 4000, 5000, 3000... any!",
+      "value": "8000",
+      "required": false
+    },
+    "MESSAGE": {
+      "description": "Set session id confirmation message",
+      "value": "",
+      "required": false
+    }
+  }
+}
