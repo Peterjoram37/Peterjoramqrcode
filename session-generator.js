@@ -1,3 +1,4 @@
+// filepath: /qr-session-generator/qr-session-generator/src/session-generator.js
 // session-generator.js
 const { makeWASocket, useMultiFileAuthState, DisconnectReason } = require("@whiskeysockets/baileys");
 const express = require("express");
@@ -8,7 +9,7 @@ const app = express();
 const port = 5000;
 
 app.get("/generate", async (req, res) => {
-  const sessionId = req.query.id || `Peterjoram_${Date.now()}`;
+  const sessionId = req.query.id || `session_${Date.now()}`;
   const authDir = `./auth_info/${sessionId}`;
 
   if (!fs.existsSync(authDir)) fs.mkdirSync(authDir, { recursive: true });
