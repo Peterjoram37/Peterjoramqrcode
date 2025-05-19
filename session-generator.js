@@ -1,13 +1,13 @@
+// filepath: [session-generator.js](http://_vscodecontentref_/1)
 const { makeWASocket, useMultiFileAuthState, DisconnectReason } = require("@whiskeysockets/baileys");
 const express = require("express");
-const qrcode = require("qrcode-terminal");
+const QRCode = require("qrcode"); // badilisha hapa
 const fs = require("fs");
 
 const app = express();
 const port = 5000;
 
 app.get("/generate", async (req, res) => {
-  // Tumia jina la session sawa na index.js
   const sessionId = "Peterjoramqrcode";
   const authDir = `./auth_info/${sessionId}`;
 
@@ -16,19 +16,23 @@ app.get("/generate", async (req, res) => {
   const { state, saveCreds } = await useMultiFileAuthState(authDir);
   const sock = makeWASocket({
     auth: state,
-    printQRInTerminal: true,
+    printQRInTerminal: false, // usionyeshe tena terminal
   });
 
-  sock.ev.on("connection.update", (update) => {
+  sock.ev.on("connection.update", async (update) => {
     const { connection, qr } = update;
     if (qr) {
-      console.log(`\n📷 Scan QR code for session: ${sessionId}\n`);
-      qrcode.generate(qr, { small: true });
+      // Tuma QR code kama image kwenye browser
+      const qrImage = await QRCode.toDataURL(qr);
+      res.send(`
+        <h2>Scan this QR Code with WhatsAppBot</h2>
+        <img src="${qrImage}" />
+      `);
     }
 
     if (connection === "open") {
       console.log(`✅ Connected! Session saved as: ${sessionId}`);
-      res.send(`✅ Session connected and saved: ${sessionId}`);
+      // usitume tena response hapa, tayari imetumwa
       sock.end();
     }
 
