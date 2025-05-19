@@ -1,5 +1,3 @@
-// filepath: /qr-session-generator/qr-session-generator/src/session-generator.js
-// session-generator.js
 const { makeWASocket, useMultiFileAuthState, DisconnectReason } = require("@whiskeysockets/baileys");
 const express = require("express");
 const qrcode = require("qrcode-terminal");
@@ -9,7 +7,8 @@ const app = express();
 const port = 5000;
 
 app.get("/generate", async (req, res) => {
-  const sessionId = req.query.id || `session_${Date.now()}`;
+  // Tumia jina la session sawa na index.js
+  const sessionId = "Peterjoramqrcode";
   const authDir = `./auth_info/${sessionId}`;
 
   if (!fs.existsSync(authDir)) fs.mkdirSync(authDir, { recursive: true });
