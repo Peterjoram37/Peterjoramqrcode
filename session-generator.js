@@ -25,8 +25,11 @@ app.get("/generate", async (req, res) => {
       // Tuma QR code kama image kwenye browser
       const qrImage = await QRCode.toDataURL(qr);
       res.send(`
-        <h2>Scan this QR Code with WhatsAppBot</h2>
-        <img src="${qrImage}" />
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#f9f9f9;">
+    <h2 style="margin-bottom:24px;">Scan this QR Code with WhatsAppBot</h2>
+    <img src="${qrImage}" style="width:320px;height:320px;box-shadow:0 4px 24px #0002;border-radius:16px;background:#fff;padding:16px;" />
+    <p style="margin-top:24px;color:#555;">Open WhatsApp &gt; Menu &gt; Linked Devices &gt; Scan QR</p>
+  </div>
       `);
     }
 
