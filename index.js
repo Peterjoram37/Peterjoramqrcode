@@ -20,6 +20,10 @@ app.use('/', async (req, res, next) => {
   res.sendFile(__path + '/main.html');
 });
 
+app.get('/qr', (req, res) => {
+  res.sendFile(__path + '/qr.html');
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

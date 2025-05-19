@@ -11,7 +11,7 @@ require('events').EventEmitter.defaultMaxListeners = 500;
 
 app.use('/qr', server);
 
-app.get('/qr.html', (req, res) => {
+app.get('/qr', (req, res) => {
   res.sendFile(__path + '/qr.html');
 });
 

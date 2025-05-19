@@ -1,1 +1,1 @@
-web: node session-generator.js
+web: node index.js
