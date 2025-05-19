@@ -10,11 +10,6 @@ let code = require('./pair'); // sasa pair.js yako
 require('events').EventEmitter.defaultMaxListeners = 500;
 
 app.use('/qr', server);
-
-app.get('/qr', (req, res) => {
-  res.sendFile(__path + '/qr.html');
-});
-
 app.use('/code', code); // hii ni route ya pair.js yako
 
 app.use('/pair', async (req, res, next) => {
