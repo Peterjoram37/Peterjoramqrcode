@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WHATSAPP-BOT-Session</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #000;
+    }
+    .marquee {
+      background-color: #fff;
+      color: #000;
+      font-size: 14px;
+      width: 100vw;
+      padding: 8px 0;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .btn {
+      --color: #e5f5f1;
+      --color2: #000;
+      width: 220px;
+      padding: 0.8em 1.75em;
+      background-color: #000;
+      border: 2px solid gold;
+      border-radius: 6px;
+      transition: .5s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
+      font-weight: 400;
+      font-size: 17px;
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      text-transform: uppercase;
+      color: var(--color);
+      box-shadow: 0 2px 12px #0004;
+    }
+    .btn::after, .btn::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform: skew(90deg) translate(-50%, -50%);
+      position: absolute;
+      inset: 50%;
+      left: 25%;
+      z-index: -1;
+      transition: .5s ease-out;
+      background-color: var(--color);
+    }
+    .btn::before {
+      top: -50%;
+      left: -25%;
+      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+    }
+    .btn:hover::before {
+      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+    }
+    .btn:hover::after {
+      transform: skew(45deg) translate(-50%, -50%);
+    }
+    .btn:hover {
+      color: var(--color2);
+    }
+    .btn:active {
+      filter: brightness(.7);
+      transform: scale(.98);
+    }
+  </style>
+</head>
+<body>
+  <div class="marquee">
+    Hello 👋 There and welcome to PETER TECH🧚
+  </div>
+  <div class="btn-group">
+    <button onclick="window.open('/qr')" class="btn">QR Code</button>
+    <button onclick="window.open('/pair')" class="btn">Pair Code</button>
+    <button onclick="window.open('https://github.com/Mrskymax/Peter-power-md')" class="btn">Bot Repo</button>
+    <button onclick="window.open('https://github.com/peterjoram37)" class="btn">github</button>
+    <button onclick="window.open('https://wa.me/0677780801')" class="btn">Contact Me</button>
+    <button onclick="window.open('https://chat.whatsapp.com/HJgOTkcWL0BBqpsMm5cT6T')" class="btn">Wa Group</button>
+    <button onclick="window.open('https://www.facebook.com/peter.joram.37')" class="btn">facebook</button>
+    <button onclick="window.open('https://www.instagram.com/peterjoram37/')" class="btn">Instagram</button>
+    <button onclick="window.open('')" class="btn">Youtube</button>
+  </div>
+</body>
+</html>
