@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsApp QR Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .qr-container {
+      background: #181818;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #0008;
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qr-title {
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+      color: gold;
+      text-align: center;
+    }
+    .qr-img {
+      width: 320px;
+      height: 320px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #0004;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-info {
+      color: #ccc;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 500px) {
+      .qr-img {
+        width: 90vw;
+        height: 90vw;
+        max-width: 320px;
+        max-height: 320px;
+      }
+      .qr-container {
+        padding: 16px 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="qr-container">
+    <div class="qr-title">Scan this QR Code with WhatsApp</div>
+    <div class="qr-img" id="qr-img">
+      <!-- QR code image will be inserted here -->
+      <span style="color:#888;">Loading QR...</span>
+    </div>
+    <div class="qr-info">
+      Open WhatsApp &gt; Menu &gt; Linked Devices &gt; Scan QR
+    </div>
+  </div>
+  <script>
+    // Fetch QR code from backend and display
+    fetch('/qr')
+      .then(res => res.text())
+      .then(html => {
+        // Try to extract <img ...> from response
+        const match = html.match(/<img[^>]+src="([^"]+)"[^>]*>/);
+        if (match && match[1]) {
+          document.getElementById('qr-img').innerHTML =
+            `<img src="${match[1]}" style="width:100%;height:100%;object-fit:contain;border-radius:12px;" alt="QR Code" />`;
+        } else {
+          document.getElementById('qr-img').innerHTML =
+            '<span style="color:red;">Failed to load QR code.</span>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('qr-img').innerHTML =
+          '<span style="color:red;">Failed to load QR code.</span>';
+      });
+  </script>
+</body>
+</html>

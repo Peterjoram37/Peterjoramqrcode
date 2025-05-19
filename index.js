@@ -5,7 +5,7 @@ __path = process.cwd();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8000;
 
-let server = require('./session-generator'); // au './qr' kama umeipa jina hilo
+let server = require('./qr'); // au './qr' kama umeipa jina hilo
 let code = require('./code'); // hakikisha code.js ipo
 
 require('events').EventEmitter.defaultMaxListeners = 500;
